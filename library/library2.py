@@ -19,4 +19,5 @@ def exit_menu():
     print("program dihentikan")
     exit()
 if __name__=="__main__":
-    welcome_message()    
+    welcome_message()  
+    exit_menu()  
