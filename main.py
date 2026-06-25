@@ -1,4 +1,4 @@
-from library import welcome_message ,exit_program
+from library import library1 
 from games import volka
 from tools import warung
 
@@ -9,12 +9,12 @@ def menu():
     elif user_option==2:
         warung.start()
     elif user_option==3:
-        exit_program()
+        library1.exit_program()
     else:
         print("hanya boleh pilih yang tersedia di menu  ")
     
 def main():
-    welcome_message()
+    library1.welcome_message()
     menu()
     
 if __name__=='__main__':
