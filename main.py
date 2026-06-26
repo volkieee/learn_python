@@ -3,7 +3,7 @@ from games import volka
 from tools import warung
 
 def menu():
-    user_option=int(input(f"✌️silahkan pilih menu programnya:\n1.Games\n2.MiniStore\n3.exit\n\nSilahkan dipilih:"))
+    user_option=int(input(f"silahkan pilih menu programnya:\n1.Games\n2.MiniStore\n3.exit\n\nSilahkan dipilih:"))
     if user_option==1:
         volka.start()
     elif user_option==2:
@@ -17,8 +17,8 @@ def main():
     library1.welcome_message()
     menu()
     
-if __name__=='__main__':
-    main()    
+if __name__=="__main__":
+    main()   
     
 
         
