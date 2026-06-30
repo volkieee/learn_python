@@ -1,14 +1,16 @@
 from library import library1 
 from games import volka
 from tools import warung
-
+from tools import MiniLibrary
 def menu():
-    user_option=int(input(f"silahkan pilih menu programnya:\n1.Games\n2.MiniStore\n3.exit\n\nSilahkan dipilih:"))
+    user_option=int(input(f"silahkan pilih menu programnya:\n1.Games\n2.MiniStore\n3.MiniLibrary\n4.exit\n\nSilahkan dipilih:"))
     if user_option==1:
         volka.start()
     elif user_option==2:
         warung.start()
     elif user_option==3:
+        MiniLibrary.start()
+    elif user_option==4:
         library1.exit_program()
     else:
         print("hanya boleh pilih yang tersedia di menu  ")

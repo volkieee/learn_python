@@ -3,7 +3,7 @@ import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 import main
-from services import db
+from services import db1
 
 def add():
     kode_barang=input("kode barang: ")
@@ -11,11 +11,11 @@ def add():
     harga_barang=int(input("harga barang: "))
     stok_barang=int(input("stok barang: "))
     
-    db.insert_item(kode_barang,nama_barang,harga_barang,stok_barang)
+    db1.insert_item(kode_barang,nama_barang,harga_barang,stok_barang)
     
 
 def check():
-    items=db.fetch_item()
+    items=db1.fetch_item()
     for item in items:
         kode_barang=item[1]
         nama_barang=item[2]

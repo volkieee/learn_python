@@ -6,13 +6,17 @@ db =mysql.connector.connect(
     password='',
     database='mini_store'
 )
-
+cursor=db.cursor()
 
 def insert_item(kode_barang,nama_barang,harga_barang,stok_barang):
     cursor=db.cursor()
+    # menjelaskan query ke database
     cursor.execute("INSERT INTO TBL_BARANG (kode_barang,nama_barang,harga_barang,stok_barang) VALUES (%s,%s,%s,%s)",
                    (kode_barang,nama_barang,harga_barang,stok_barang))
+    # -------
+    # setelah dijalakan save dengan permanen
     db.commit()
+    # -------
     if cursor.rowcount>0:
         print("\nData berhasil di masukkan\n")
     else:
