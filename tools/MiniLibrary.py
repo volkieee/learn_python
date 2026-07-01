@@ -9,7 +9,7 @@ def add():
     Tahun=int(input("Tahun:"))
     Status=input("Status:")
     
-    db2.insert_table_siswa(Judul,Penulis,Tahun,Status)
+    db2.insert_table(Judul,Penulis,Tahun,Status)
     
 def check():
     text="Daftar Buku Perpus"

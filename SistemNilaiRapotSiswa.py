@@ -68,8 +68,41 @@ def tampilkan_semua_rapor():
         
     input("\n[Tekan Enter untuk kembali ke menu utama]")
         
+def tampilkan_per_siswa():
+    id_siswa = int(input("Masukkan id siswa: "))
+    data = db3.ambil_rapor_per_siswa(id_siswa)
     
-    
+    # 1. Cek apakah datanya ada (list tidak kosong)
+    if len(data) > 0:
+        # Ambil baris pertama [0] untuk dasar mencetak Biodata
+        baris_pertama = data[0] 
+        
+        print("\n" + "="*40)
+        print(f"Nama  : {baris_pertama[1]}")  # Index 1 adalah Nama
+        print(f"Kelas : {baris_pertama[2]}")  # Index 2 adalah Kelas
+        print("="*40)
+        
+        # Cetak header untuk daftar nilai
+        print(f"{'Mapel':<15}{'Tugas':<8}{'UTS':<8}{'UAS':<8}{'Akhir':<8}{'Status':<8}")
+        print("-" * 50)
+        
+        # 2. Mulai looping untuk membongkar nilai mapelnya ke bawah
+        for baris in data:
+            mapel = baris[3]
+            tugas = baris[4]
+            uts   = baris[5]
+            uas   = baris[6]
+            
+            nilai_akhir = (0.3 * tugas) + (0.3 * uts) + (0.4 * uas)
+            status = "Lulus" if nilai_akhir >= 70 else "Tidak Lulus"
+            print(f"{mapel:<15}{tugas:<8}{uts:<8}{uas:<8}{nilai_akhir:<8.1f}{status}")
+            
+        print("-" * 50)
+        input("\n[Tekan Enter untuk kembali ke menu utama]")
+        
+    else:
+        print(f"❌ Data siswa dengan ID {id_siswa} tidak ditemukan.")
+        input("\n[Tekan Enter untuk kembali ke menu utama]")
 while True:
     library1.welcome_message_nilaiRaporSiswa()
     menu=int(input("Menu\n1.Daftarkan Siswa Baru\n2.Input Nilai Mata Pelajaran\n3.Tampilkan Semua Rapor Siswa\n4.Cari Rapor per Siswa (Cetak Rapor)\n5.Keluar Aplikasi\n\nSilahkan dipilih:"))
@@ -80,7 +113,7 @@ while True:
     elif menu==3:
         tampilkan_semua_rapor()    
     elif menu==4:
-        pass
+        tampilkan_per_siswa()    
     elif menu==5:
         library1.exit_program2()    
     

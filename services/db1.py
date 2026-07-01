@@ -6,7 +6,7 @@ db =mysql.connector.connect(
     password='',
     database='mini_store'
 )
-cursor=db.cursor()
+
 
 def insert_item(kode_barang,nama_barang,harga_barang,stok_barang):
     cursor=db.cursor()

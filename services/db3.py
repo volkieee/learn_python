@@ -53,7 +53,26 @@ def ambil_semua_rapor_siswa():
     cursor.close()
     return semua_data
     
-
+def ambil_rapor_per_siswa(id_siswa):
+    cursor=db.cursor()
+    sql='''
+    SELECT
+        tbl_siswa.id_siswa,
+        tbl_siswa.nama,
+        tbl_siswa.kelas,
+        tbl_nilai.mapel,
+        tbl_nilai.nilai_tugas,
+        tbl_nilai.nilai_uts,
+        tbl_nilai.nilai_uas
+    FROM tbl_nilai
+    INNER JOIN tbl_siswa ON tbl_nilai.id_siswa=tbl_siswa.id_siswa
+    ORDER BY tbl_siswa.id_siswa ASC
+    '''
+    cursor.execute(sql,(id_siswa),)
+    data_siswa=cursor.fetchall()
+    cursor.close()
+    return data_siswa
+    
 
 
             
