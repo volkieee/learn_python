@@ -48,14 +48,31 @@ def exit_program2():
     print("Program dihentikan")
     exit()    
       
-      
 def welcome_dataRapor():
     text="Data Rapor Siswa"
     width=len(text)+50
     style="="*width
     print(style)     
     print(text.center(width))
-    print(style)     
+    print(style)   
+    
+    
+    
+def welcome_jadwalFilm():
+    text="Jadwal Film & Denah Kursi"
+    width=len(text)+50
+    style="="*width
+    print(style)
+    print(text.center(width))
+    print(style)
+          
+def welcome_CinemaApp():
+    text="WELCOME TO CINEMA APP"
+    width=len(text)+50
+    style="="*width
+    print(style)          
+    print(text.center(width))
+    print(style)          
 if __name__=='__main__':
     welcome_dataRapor()
     welcome_message_nilaiRaporSiswa()
