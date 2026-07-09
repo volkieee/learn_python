@@ -28,7 +28,6 @@ def jadwal_film():
 
 def denah_kursi():
     cursor = db.cursor()
-    
     # 1. Cek apakah tabel kursi masih kosong 
     cursor.execute("SELECT COUNT(*) FROM tbl_kursi")
     jumlah_data = cursor.fetchone()[0]
@@ -62,7 +61,17 @@ def book_tiket(nama_pembeli,id_film,id_kursi):
     cursor.execute("INSERT INTO tbl_pesanan(nama_pembeli,id_film,id_kursi) VALUES (%s,%s,%s)",(nama_pembeli,id_film,id_kursi))
     db.commit()
     if cursor.rowcount>0:
-        print("data berhasil di masukkan")
+        text="Data berhasil dimasukkan"
+        width=len(text)+10
+        style="="*width
+        print(style)
+        print(text.center(width))
+        print(style)
+        cursor.execute("UPDATE tbl_kursi SET status='TERISI' where id_kursi=%s",(id_kursi,))
+        db.commit()
+        cursor.close()
     else:
-        print("data gagal di masukkan")    
+        print("Data gagal di masukkan")    
+        
+    cursor.close()
     

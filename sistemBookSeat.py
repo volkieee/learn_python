@@ -1,11 +1,11 @@
 from services import db4
 from library import library1
-
+from time import sleep
 
   
 def display_jadwal_dan_kursi():
     while True:
-        add_film = input("ingin menambahkan film?[y/n]: ").lower()
+        add_film = input("ingin menambahkan film?[y/n]:").lower()
         if add_film == "y" or add_film == "n":
             break  # Keluar dari loop jika jawaban sudah valid ('y' atau 'n')
         else:
@@ -25,7 +25,8 @@ def display_jadwal_dan_kursi():
             if tambah_film=="y":
                 continue
             else:
-                break               
+                break   
+                       
     library1.welcome_jadwalFilm()
     # JADWAL FILM
     print("daftar film yang tayang:")
@@ -35,7 +36,7 @@ def display_jadwal_dan_kursi():
         judul=film[1]
         harga=film[2]
         print(f"[ ID: {id_film} ] {judul:<25} | Harga: Rp {harga}")
-    print("-"*30)
+    print("-"*65)
     
     # DENAH KURSI
     print("Status Denah kursi")
@@ -46,10 +47,10 @@ def display_jadwal_dan_kursi():
         id_kursi=kursi[0]
         nomor_kursi=kursi[1]
         status=kursi[2]
-        print(f"[ID:{id_kursi}|{nomor_kursi}:{status:<6}]",end="")
+        print(f" [ID:{id_kursi:<2}|{nomor_kursi}:{status:<6}]  ",end="")
         # fungsi end itu buat ksh enter setelah kodenya di eksekusi
         hitung +=1 
-        if hitung %3==1:
+        if hitung %3==0:
             print()   
     
 def booking_seat():
@@ -57,6 +58,7 @@ def booking_seat():
     id_film=int(input("Massukan id film:"))
     id_kursi=int(input("Masukkan id kursi (1-12):"))
     db4.book_tiket(nama_pembeli,id_film,id_kursi)
+    sleep(1)
     
  
 library1.welcome_CinemaApp()
