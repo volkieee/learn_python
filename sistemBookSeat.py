@@ -19,7 +19,7 @@ def display_jadwal_dan_kursi():
             while True:
                 tambah_film=input("ingin menambah film lagi?[y/n]:")
                 if tambah_film=="y" or tambah_film=="n":
-                    break
+                    break   
                 else:
                     print("Pilihan salah! Masukkan hanya 'y' atau 'n'")
             if tambah_film=="y":
@@ -27,21 +27,7 @@ def display_jadwal_dan_kursi():
             else:
                 break               
     library1.welcome_jadwalFilm()
-    seat=db4.denah_kursi()
-    # if len(seat)=0 kayak 
-    if len(seat)==0:
-        daftar_kursi = [
-            "A1", "A2", "A3",
-            "B1", "B2", "B3",
-            "C1", "C2", "C3",
-            "D1", "D2", "D3",
-            "E1", "E2", "E3"
-        ]
-        # # Membuka cursor dari koneksi database di db4
-        cursor=db4.db.cursor()
-        for nama in daftar_kursi:
-            pass
-    
+    # JADWAL FILM
     print("daftar film yang tayang:")
     isi_film=db4.jadwal_film()
     for film in isi_film:
@@ -51,9 +37,21 @@ def display_jadwal_dan_kursi():
         print(f"[ ID: {id_film} ] {judul:<25} | Harga: Rp {harga}")
     print("-"*30)
     
+    # DENAH KURSI
+    print("Status Denah kursi")
+    print("-"*65)
+    isi_kursi=db4.denah_kursi()
+    hitung=0
+    for kursi in isi_kursi:
+        id_kursi=kursi[0]
+        nomor_kursi=kursi[1]
+        status=kursi[2]
+        print(f"[ID:{id_kursi}|{nomor_kursi}:{status:<6}]",end="")
+        # fungsi end itu buat ksh enter setelah kodenya di eksekusi
+        hitung +=1 
+        if hitung %3==1:
+            print()   
     
-    
-
 def booking_seat():
     nama_pembeli=input("Masukkan nama anda:")
     id_film=int(input("Massukan id film:"))
