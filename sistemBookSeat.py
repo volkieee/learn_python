@@ -58,7 +58,15 @@ def booking_seat():
     id_film=int(input("Massukan id film:"))
     id_kursi=int(input("Masukkan id kursi (1-12):"))
     db4.book_tiket(nama_pembeli,id_film,id_kursi)
+    print("silahkan cetak di tiket di menu 3")
     sleep(1)
+    
+def menu_cetak_tiket():
+    print("\n--- MENU CETAK TIKET ---")
+    nama = input("Masukkan Nama Pembeli untuk cetak tiket:")
+    id_film = input("Masukkan ID Film yang Anda tonton:")
+    id_kursi = input("Masukkan ID Kursi yang Anda pesan:")
+    db4.ambil_tiket(nama,id_film,id_kursi)   
     
  
 library1.welcome_CinemaApp()
@@ -66,13 +74,13 @@ while True:
     menu=int(input("\n1.Lihat Jadwal Film & Denah Kursi\n2.Pesan Tiket (Booking)\n3.Cetak Tiket Penonton\n4.Batalkan Pesanan (Refund)\n5.Keluar Aplikasi\n\nSilahkan di pilih:"))
     
     if menu==1:
-        display_jadwal_dan_kursi()  
+        display_jadwal_dan_kursi()      
     elif menu==2:
         booking_seat()
     elif menu==3:
-        pass
-    elif menu==4:
+        menu_cetak_tiket()
+    elif menu==4:   
         pass
     elif menu==5:
-        pass
+        library1.exit_program2()
     

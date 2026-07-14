@@ -1,4 +1,6 @@
 import mysql.connector
+import datetime
+
 
 db=mysql.connector.connect(
     host='localhost',
@@ -74,4 +76,68 @@ def book_tiket(nama_pembeli,id_film,id_kursi):
         print("Data gagal di masukkan")    
         
     cursor.close()
+    
+def cetak_tiket(nama_pembeli,judul_film,nomor_kursi,harga_film):
+    time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    print("\n" + "="*50)
+    print("🎟️               CINEMA TIKET XXI             🎟️")
+    print("="*50)
+    print(f" Waktu Transaksi : {time}")
+    print("-"*50)
+    print(f" 🎬 JUDUL FILM   : {judul_film.upper()}")
+    print(f" 👤 PENONTON     : {nama_pembeli.upper()}")
+    print(f" 💺 NOMOR KURSI  : {nomor_kursi}")
+    print(f" 💵 HARGA        : Rp {harga_film}")
+    print("-"*50)
+    print("       TERIMA KASIH TELAH MEMBELI TIKET       ")
+    print("      SILAHKAN DIBAWA KE GERBANG BIOSKOP       ")
+    print("="*50 + "\n")
+    
+def ambil_tiket(nama_pembeli,id_film,id_kursi):
+    cursor=db.cursor()
+    cursor.execute("SELECT judul,harga FROM tbl_film WHERE id_film=%s",(id_film,))
+    # itu film_data isnya tuple contoh (rush hour,50000)
+    film_data=cursor.fetchone()
+    
+    cursor.execute("SELECT nomor_kursi FROM tbl_kursi WHERE id_kursi=%s",(id_kursi,))
+    kursi_data=cursor.fetchone()
+    cursor.close()
+    
+    if film_data and kursi_data:
+        judul=film_data[0]
+        harga=film_data[1]
+        nomor_kursi=kursi_data[0]
+        cetak_tiket(nama_pembeli,judul,nomor_kursi,harga)
+    else:
+        print("Gagal mencetak tiket karena data tidak ditemukan")
+        
+def tampilan_cek_refund():
+    time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M")  
+    
+    
+    
+    
+      
+def cek_dan_proses_refund(nama_pembeli,id_film,id_kursi):
+    cursor=db.cursor()
+    
+    cursor.execute("SELECT nama_pembeli,id_film,id_kursi FROM tbl_pesanan WHERE nama_pembeli=%s AND id_film=%s AND id_kursi=%s",(nama_pembeli,id_film,id_kursi))
+    data_film=cursor.fetchone()
+    cursor.execute("SELECT nomor_kursi,status FROM tbl_kursi WHERE id_kursi=%s",(id_kursi,))
+    # wajib memakai (,) kalo di satu variabel karena agar datanya dikira tuple oleh py (data)kalau tanpa koma py akan mengira data tersebut hanyalah integer 
+    
+    data_kursi=cursor.fetchone()
+    cursor.close()
+    if data_film and data_kursi:
+        nama_pembeli=data_film[0]
+        id_film=data_film[1]
+        nomor_kursi=data_kursi[0]
+        tampilan_cek_refund(nama_pembeli,id_film,nomor_kursi)
+    else:
+        print("gagal memproses refund")
+    
+    
+    
+    
+    
     
