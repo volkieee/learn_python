@@ -111,13 +111,27 @@ def ambil_tiket(nama_pembeli,id_film,id_kursi):
     else:
         print("Gagal mencetak tiket karena data tidak ditemukan")
         
-def tampilan_cek_refund():
-    time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M")  
-    
-    
-    
-    
-      
+def tampilan_cek_refund(nama_pembeli,id_film,id_kursi):
+    text="FORM INPUT REFUND TIKET"
+    width=len(text)+10
+    style="="*width
+    print(style)
+    print(text.center(width))
+    print(style)
+    print(f"Masukkan nama pembeli:{nama_pembeli}")
+    print(f"Masukkan ID Film:{id_film}")
+    print(f"Masukkan ID Kursi:{id_kursi}")
+    print(style)
+    user_choose=input("Apakah anda ingin menghapus pesanan ini?[y/n]:")
+    if user_choose=="y":
+        cursor=db.cursor()
+        cursor.execute("DELETE FROM tbl_pesanan WHERE nama_pembeli=%s AND id_film=%s AND id_kursi=%s",(nama_pembeli,id_film,id_kursi))
+        cursor.execute("UPDATE tbl_kursi SET status='KOSONG' WHERE id_kursi=%s",(id_kursi,))
+        db.commit()
+        cursor.close()
+        print("\n SUKSES Tiket berhasil dihapus!")
+    else:
+        print("Tiket gagal dihapus!")    
 def cek_dan_proses_refund(nama_pembeli,id_film,id_kursi):
     cursor=db.cursor()
     

@@ -68,7 +68,13 @@ def menu_cetak_tiket():
     id_kursi = input("Masukkan ID Kursi yang Anda pesan:")
     db4.ambil_tiket(nama,id_film,id_kursi)   
     
- 
+def refund_tiket():
+    print("===MENU REFUND TIKET===")
+    nama_pembeli=input("Masukkan nama pembeli:")
+    id_film=int(input("Masukkan id_film:"))
+    id_kursi=int(input("Masukkan id_kursi:"))
+    db4.cek_dan_proses_refund(nama_pembeli,id_film,id_kursi)
+    
 library1.welcome_CinemaApp()
 while True:
     menu=int(input("\n1.Lihat Jadwal Film & Denah Kursi\n2.Pesan Tiket (Booking)\n3.Cetak Tiket Penonton\n4.Batalkan Pesanan (Refund)\n5.Keluar Aplikasi\n\nSilahkan di pilih:"))
@@ -80,7 +86,7 @@ while True:
     elif menu==3:
         menu_cetak_tiket()
     elif menu==4:   
-        pass
+        refund_tiket()
     elif menu==5:
         library1.exit_program2()
     
