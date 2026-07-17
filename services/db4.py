@@ -111,16 +111,16 @@ def ambil_tiket(nama_pembeli,id_film,id_kursi):
     else:
         print("Gagal mencetak tiket karena data tidak ditemukan")
         
-def tampilan_cek_refund(nama_pembeli,id_film,id_kursi):
+def tampilan_cek_refund(nama_pembeli,id_film,id_kursi,judul,nomor_kursi):
     text="FORM INPUT REFUND TIKET"
     width=len(text)+10
     style="="*width
     print(style)
     print(text.center(width))
     print(style)
-    print(f"Masukkan nama pembeli:{nama_pembeli}")
-    print(f"Masukkan ID Film:{id_film}")
-    print(f"Masukkan ID Kursi:{id_kursi}")
+    print(f"Nama Pembeli:{nama_pembeli}")
+    print(f"Judul Film:{judul}")
+    print(f"Nomor Kursi:{nomor_kursi}")
     print(style)
     user_choose=input("Apakah anda ingin menghapus pesanan ini?[y/n]:")
     if user_choose=="y":
@@ -137,16 +137,20 @@ def cek_dan_proses_refund(nama_pembeli,id_film,id_kursi):
     
     cursor.execute("SELECT nama_pembeli,id_film,id_kursi FROM tbl_pesanan WHERE nama_pembeli=%s AND id_film=%s AND id_kursi=%s",(nama_pembeli,id_film,id_kursi))
     data_film=cursor.fetchone()
-    cursor.execute("SELECT nomor_kursi,status FROM tbl_kursi WHERE id_kursi=%s",(id_kursi,))
-    # wajib memakai (,) kalo di satu variabel karena agar datanya dikira tuple oleh py (data)kalau tanpa koma py akan mengira data tersebut hanyalah integer 
-    
+    cursor.execute("SELECT id_kursi,nomor_kursi,status FROM tbl_kursi WHERE id_kursi=%s",(id_kursi,))
     data_kursi=cursor.fetchone()
+    # wajib memakai (,) kalo di satu variabel karena agar datanya dikira tuple oleh py (data)kalau tanpa koma py akan mengira data tersebut hanyalah integer 
+    cursor.execute("SELECT judul FROM tbl_film WHERE id_film=%s",(id_film,))
+    data_film_detail=cursor.fetchone()
+   
     cursor.close()
-    if data_film and data_kursi:
+    if data_film and data_kursi and data_film_detail:
         nama_pembeli=data_film[0]
         id_film=data_film[1]
-        nomor_kursi=data_kursi[0]
-        tampilan_cek_refund(nama_pembeli,id_film,nomor_kursi)
+        id_kursi=data_kursi[0]
+        nomor_kursi=data_kursi[1]
+        judul=data_film_detail[0]
+        tampilan_cek_refund(nama_pembeli,id_film,id_kursi,judul,nomor_kursi)
     else:
         print("gagal memproses refund")
     

@@ -24,6 +24,7 @@ def display_jadwal_dan_kursi():
                     print("Pilihan salah! Masukkan hanya 'y' atau 'n'")
             if tambah_film=="y":
                 continue
+            # continue itu untuk mengulang proses input lagi
             else:
                 break   
                        
@@ -78,7 +79,6 @@ def refund_tiket():
 library1.welcome_CinemaApp()
 while True:
     menu=int(input("\n1.Lihat Jadwal Film & Denah Kursi\n2.Pesan Tiket (Booking)\n3.Cetak Tiket Penonton\n4.Batalkan Pesanan (Refund)\n5.Keluar Aplikasi\n\nSilahkan di pilih:"))
-    
     if menu==1:
         display_jadwal_dan_kursi()      
     elif menu==2:
