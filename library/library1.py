@@ -17,7 +17,7 @@ def welcome_message2():
     print(style)   
 
 def exit_program():
-    print("program akan dihentikan  ")
+    print("Program akan dihentikan  ")
     sleep(1)
     print("3..")
     sleep(1)
@@ -72,12 +72,37 @@ def welcome_CinemaApp():
     style="="*width
     print(style)          
     print(text.center(width))
-    print(style)          
+    print(style)
+    
+    
+    
+    
+    
+def welcome_message_rental_motor():
+    text="APLIKASI RENTAL MOTOR"     
+    width=len(text)+10
+    style="="*width
+    print(style)
+    print(text.center(width))    
+    print(style)
+    return width    
+    # Kita return nilai width-nya agar fungsi cetak menu di bawah 
+    # bisa menyesuaikan panjang garis pembatasnya secara otomatis
+             
+def menu_rental_motor(width):
+    style="-"*width       
+    print("1.Daftar Motor & Harga")
+    print("2.Sewa Motor (Input Pesanan)")
+    print("3.Pengembalian Motor (Selesai Sewa)")
+    print("4.Lihat Riwayat Sewa")
+    print("5.Keluar Aplikasi")
+    print(style)      
 if __name__=='__main__':
-    welcome_dataRapor()
-    welcome_message_nilaiRaporSiswa()
-    welcome_message2()
-    welcome_message()    
-    exit_program()
+    # welcome_dataRapor()
+    # welcome_message_nilaiRaporSiswa()
+    # welcome_message2()
+    # welcome_message()    
+    # exit_program()
+    welcome_message_rental_motor()
     
     

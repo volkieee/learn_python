@@ -151,6 +151,7 @@ def cek_dan_proses_refund(nama_pembeli,id_film,id_kursi):
         nomor_kursi=data_kursi[1]
         judul=data_film_detail[0]
         tampilan_cek_refund(nama_pembeli,id_film,id_kursi,judul,nomor_kursi)
+        # judul dan nomor_kursi itu di tambahin untuk mengatur tampilan cek refund
     else:
         print("gagal memproses refund")
     
