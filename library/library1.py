@@ -96,7 +96,14 @@ def menu_rental_motor(width):
     print("3.Pengembalian Motor (Selesai Sewa)")
     print("4.Lihat Riwayat Sewa")
     print("5.Keluar Aplikasi")
-    print(style)      
+    print(style)  
+def list_rental_motor():
+    text="Daftar Armada Motor"
+    width=len(text)+50
+    style="="*width
+    print(style)          
+    print(text.center(width))
+    print(style)       
 if __name__=='__main__':
     # welcome_dataRapor()
     # welcome_message_nilaiRaporSiswa()
