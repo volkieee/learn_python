@@ -98,7 +98,7 @@ def menu_rental_motor(width):
     print("5.Keluar Aplikasi")
     print(style)  
 def list_rental_motor():
-    text="Daftar Armada Motor"
+    text="Daftar Motor"
     width=len(text)+50
     style="="*width
     print(style)          

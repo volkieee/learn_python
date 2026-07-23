@@ -3,31 +3,36 @@ from services import dbRentalMotor
 
 def input_daftar_motor():
     while True:
-        
-        merek_motor=input("Merek motor:")
-        plat_nomor=input("Plat nomor:")
-        harga_per_hari=int(input("Harga/hari:"))
-        status_awal="Tersedia"
-        dbRentalMotor.insert_motor(merek_motor,plat_nomor,harga_per_hari,status_awal)
-        while True:   
-            break_loop=input("ingin menambahkan motor lagi?[y/n]:").strip()
-            if break_loop in["y","n"]:
-                break
-            print("Tolong isi dgn benar [y/n]:")
-        if break_loop=="n":
-            print("Selesai menambahkan data motor")
-            break
-    data_motor=dbRentalMotor.list_motor()
+        tanya_awal=input("ingin menambahkan motor?[y/n]:")
+        if tanya_awal in ["y","n"]:
+             break
+        print("isi yang benar[y/n]")
+    if tanya_awal=="y":
+            while True:
+                merek_motor=input("Merek motor:")
+                plat_nomor=input("Plat nomor:")
+                harga_per_hari=int(input("Harga/hari:"))
+                status_awal="Tersedia"
+                dbRentalMotor.insert_motor(merek_motor,plat_nomor,harga_per_hari,status_awal)
+                while True:   
+                    break_loop=input("ingin menambahkan motor lagi?[y/n]:").strip()
+                    if break_loop in["y","n"]:
+                        break
+                    print("Tolong isi dgn benar [y/n]:")
+                if break_loop=="n":
+                    print("Selesai menambahkan data motor")
+                    break
+    library1.list_rental_motor()
+    data_motor = dbRentalMotor.list_motor()
+# Cetak setiap baris motor (sama persis gaya penulisan kode film kamu)
     for data in data_motor:
-        merek=data[0]
-        plat_nomor=data[1]
-        harga_per_hari=data[2]
-        status=data[3]
-        print("\n======================================================================")
-        print("                         DAFTAR ARMADA MOTOR                         ")
-        print("======================================================================")
-        print(f"Merek Motor:{merek} | Plat Motor:{plat_nomor} | Harga/hari:{harga_per_hari} | Status:{status:<10}")
-        print("----------------------------------------------------------------------")
+        id_motor=data[0]
+        merek = data[1]
+        plat_nomor = data[2]
+        harga_per_hari = data[3]
+        status = data[4]
+        print(f"ID:{id_motor:<2} | Merek motor: {merek:<10} | Plat: {plat_nomor:<10} | Harga: Rp {harga_per_hari:,<8} | Status: {status}")
+    print("-" * 65)
             
 
 length=library1.welcome_message_rental_motor()

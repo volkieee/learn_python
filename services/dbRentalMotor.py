@@ -20,7 +20,7 @@ def insert_motor(merek,plat_nomor,harga_per_hari,status):
         
 def list_motor():
     cursor=db.cursor()
-    cursor.execute("SELECT merek,plat_nomor,harga_per_hari,status FROM tbl_motor")
+    cursor.execute("SELECT id_motor,merek,plat_nomor,harga_per_hari,status FROM tbl_motor")
     show_list=cursor.fetchall()
     return show_list
         
