@@ -99,7 +99,7 @@ def menu_rental_motor(width):
     print(style)  
 def list_rental_motor():
     text="Daftar Motor"
-    width=len(text)+50
+    width=len(text)+70
     style="="*width
     print(style)          
     print(text.center(width))

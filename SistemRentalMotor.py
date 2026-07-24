@@ -31,8 +31,8 @@ def input_daftar_motor():
         plat_nomor = data[2]
         harga_per_hari = data[3]
         status = data[4]
-        print(f"ID:{id_motor:<2} | Merek motor: {merek:<10} | Plat: {plat_nomor:<10} | Harga: Rp {harga_per_hari:,<8} | Status: {status}")
-    print("-" * 65)
+        print(f"ID:{id_motor:<2} | Merek motor: {merek:<8} | Plat: {plat_nomor:<10} | Harga: Rp {harga_per_hari:<8,} | Status: {status}")
+    print("-" * 80)
             
 
 length=library1.welcome_message_rental_motor()
